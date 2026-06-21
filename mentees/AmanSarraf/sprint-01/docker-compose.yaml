@@ -1,0 +1,30 @@
+# Local Neo4j for Sprint 1 — alternative to AuraDB Free.
+# Start: docker compose up -d
+# Browser: http://localhost:7474  Bolt: neo4j://localhost:7687
+#
+# Password comes from NEO4J_PASSWORD in .env (same file as load_onet.py).
+# O*NET txt files are mounted read-only at /import inside the container.
+
+services:
+  neo4j:
+    image: neo4j:5
+    container_name: onet-neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j_data:/data
+      - ./data:/import:ro
+    environment:
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD:-onet-sprint-local}
+      - NEO4J_PLUGINS=["apoc"]
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:7474"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  neo4j_data:
