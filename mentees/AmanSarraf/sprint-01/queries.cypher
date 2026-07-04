@@ -98,3 +98,15 @@ RETURN o.title AS occupation_a,
        other.title AS occupation_b,
        count(s) AS shared_skills
 ORDER BY shared_skills DESC;
+
+// -----------------------------------------------------------------------------
+// Q9: Graph view for one occupation by title (no SOC code) — use Graph tab
+// CONTAINS is forgiving; exact match: toLower(o.title) = "software developers"
+// -----------------------------------------------------------------------------
+MATCH (o:Occupation)
+WHERE toLower(o.title) CONTAINS "software developer"
+OPTIONAL MATCH (o)-[t:HAS_TASK]->(task:Task)
+OPTIONAL MATCH (o)-[sk:REQUIRES_SKILL]->(skill:Skill)
+OPTIONAL MATCH (o)-[sw:USES_SOFTWARE]->(soft:Software)
+RETURN o, t, task, sk, skill, sw, soft
+LIMIT 80;
