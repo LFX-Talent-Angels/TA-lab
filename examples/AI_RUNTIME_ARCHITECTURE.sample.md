@@ -31,15 +31,15 @@ flowchart LR
   prompt[User prompt]
   normalize[Normalize text]
   candidates[Find candidate nodes]
-  graph_op[Graph operation]
+  graph[Graph operation]
   evidence[Collect evidence]
   response[Structured answer]
   eval[Eval case]
 
   prompt --> normalize
   normalize --> candidates
-  candidates --> graph_op
-  graph_op --> evidence
+  candidates --> graph
+  graph --> evidence
   evidence --> response
   response --> eval
 ```

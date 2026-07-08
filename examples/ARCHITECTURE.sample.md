@@ -54,7 +54,7 @@ flowchart TD
   question[Research question]
   fixture[Small taxonomy fixture]
   model[Canonical graph model]
-  kg[Inspectable graph]
+  graph[Inspectable graph]
   query[Graph query]
   retrieval[Graph-RAG experiment]
   answer[Agent answer]
@@ -62,8 +62,8 @@ flowchart TD
 
   question --> fixture
   fixture --> model
-  model --> kg
-  kg --> query
+  model --> graph
+  graph --> query
   query --> retrieval
   retrieval --> answer
   answer --> eval
