@@ -1,0 +1,37 @@
+sequenceDiagram
+  autonumber
+
+  participant U  as User
+  participant API as API edge
+  participant A  as Main assistant
+  participant LCP as Locate · Connect · Pathfind
+  participant T  as Suite tools (suite=X)
+  participant DB as KG: one suite
+  participant LOG as Run log
+
+  U->>API: natural language question
+  API->>A: turn + session state
+
+  rect rgb(235, 235, 250)
+    note over A: Planning
+    A->>A: intent → plan (which leaves · which suites)
+  end
+
+  rect rgb(235, 248, 235)
+    note over LCP,DB: Fan-out — only planned leaves run
+    A->>LCP: run planned leaves
+    LCP->>T: call tools with suite param
+    T->>DB: graph reads
+    DB-->>T: subgraph · node ids · confidence
+    T-->>LCP: structured results per suite
+    LCP-->>A: results + provenance
+  end
+
+  rect rgb(235, 235, 250)
+    note over A: Merge + narrate
+    A->>A: merge · ground · narrate · check confidence
+    A->>LOG: record turn (assumptions · tool I/O)
+  end
+
+  A-->>API: answer package
+  API-->>U: citations · gaps · next steps · uncertainty

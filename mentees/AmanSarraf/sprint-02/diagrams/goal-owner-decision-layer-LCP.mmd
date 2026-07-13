@@ -1,0 +1,53 @@
+---
+config:
+  layout: elk
+---
+flowchart TB
+    U["USER\nchat question · optional constraints"]
+    M_PLAN["MAIN ASSISTANT\nreads intent · builds plan\nowns goal end-to-end"]
+    PLAN["Plan decided from intent\nL only · L+C · or L+C+P"]
+
+    L["LOCATE\nskill + suite-aware tools\nfree text → node + confidence"]
+    C["CONNECT\nskill + suite-aware tools\nneighbors · gaps · hierarchy"]
+    P["PATHFIND\nskill + suite-aware tools\nroutes · scoring"]
+
+    T["Suite-specific tools\nsuite param passed per call\nsame tools for every taxonomy"]
+    G[("Taxonomy graph\none KG per suite")]
+
+    M_MERGE["MAIN ASSISTANT\nmerges results · writes answer"]
+    A["ONE COHERENT ANSWER"]
+    U2["USER\nnext query · correction · follow-up"]
+
+    U -->|"question"| M_PLAN
+    M_PLAN -->|"intent → plan"| PLAN
+
+    PLAN -->|"if plan includes L"| L
+    PLAN -->|"if plan includes C"| C
+    PLAN -->|"if plan includes P"| P
+
+    L -->|"suite param"| T
+    C -->|"suite param"| T
+    P -->|"suite param"| T
+
+    T <-->|"reads · returns subgraph"| G
+    T -->|"results + confidence"| M_MERGE
+
+    M_MERGE -->|"answer"| A
+    A -->|"feedback / next query"| U2
+
+    %% --- colour classes ---
+    classDef user     fill:#4361ee,stroke:#2a4acc,color:#fff
+    classDef master   fill:#3a0ca3,stroke:#2d0b82,color:#fff
+    classDef plan     fill:#4cc9f0,stroke:#2bb8e0,color:#000
+    classDef lcp      fill:#f4a261,stroke:#e08c4a,color:#000
+    classDef tools    fill:#2a9d8f,stroke:#1f7a6e,color:#fff
+    classDef kg       fill:#e9c46a,stroke:#d4a843,color:#000
+    classDef answer   fill:#1b4332,stroke:#143326,color:#fff
+
+    class U,U2 user
+    class M_PLAN,M_MERGE master
+    class PLAN plan
+    class L,C,P lcp
+    class T tools
+    class G kg
+    class A answer
