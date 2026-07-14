@@ -2,8 +2,6 @@
 
 **Author:** Aman Kumar Sarraf  
 **Sprint:** 2 · System Architecture  
-**Companion:** `ONE-PAGER.md`  
-**Taxonomy this author works with:** O\*NET  
 **Out of scope:** production SaaS, accounts, payments, bulk proprietary dumps, full Evaluator product agent  
 
 Living description of the proposed system. History lives in git.
