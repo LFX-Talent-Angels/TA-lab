@@ -1,0 +1,80 @@
+---
+config:
+  layout: elk
+---
+flowchart TB
+    U["USER\nchat UI · question · optional constraints"]
+    M["MASTER AGENT / Orchestrator\n1. Understand INTENT\n2. Build PLAN: L only · L+C · L+C+P\n3. Fan-out to all suites in parallel\nowns goal end-to-end"]
+    PLAN["Plan from intent\nexample: Locate + Connect · or Locate only"]
+
+    subgraph SHARED["SHARED L / C / P — same logic, suite told via tool param"]
+      direction LR
+      L["LOCATE\nfree text → node + confidence"]
+      C["CONNECT\nneighbors · gaps · hierarchy"]
+      P["PATHFIND\nroutes under scoring rules"]
+    end
+
+    T_ONET["O*NET tools\nsearch_nodes · get_neighbors · enumerate_paths"]
+    T_ESCO["ESCO tools\nsearch_nodes · get_neighbors · enumerate_paths"]
+    T_SFIA["SFIA tools\nsearch_nodes · get_neighbors · enumerate_paths"]
+    T_MORE["New taxonomy tools\nadd suite here — L/C/P unchanged"]
+
+    KG1[("KG: O*NET")]
+    KG2[("KG: ESCO")]
+    KG3[("KG: SFIA")]
+    KG4[("KG: new")]
+
+    XW["Crosswalk — optional\nexplicit mapping only · never silent identity"]
+    MERGE["Master merges all results\ncite · mark gaps · surface disagreements"]
+    R["RESPONSE LAYER\nnarrative · per-suite citations\ngaps · uncertainty · follow-ups"]
+    A["ONE COHERENT ANSWER\nuser can correct in next turn"]
+    U2["USER\nnext query · correction · follow-up"]
+
+    U -->|"1 request"| M
+    M -->|"2 intent → plan"| PLAN
+    PLAN -->|"3 fan-out"| SHARED
+
+    SHARED -->|"suite=onet"| T_ONET
+    SHARED -->|"suite=esco"| T_ESCO
+    SHARED -->|"suite=sfia"| T_SFIA
+    SHARED -->|"suite=..."| T_MORE
+
+    T_ONET --> KG1
+    T_ESCO --> KG2
+    T_SFIA --> KG3
+    T_MORE --> KG4
+
+    KG1 -->|"4 results + provenance"| MERGE
+    KG2 -->|"4 results + provenance"| MERGE
+    KG3 -->|"4 results + provenance"| MERGE
+    KG4 -->|"4 results + provenance"| MERGE
+
+    MERGE -. optional .-> XW
+    XW -.-> MERGE
+
+    MERGE -->|"5 answer package"| R
+    R -->|"6 render"| A
+    A -->|"7 feedback / next query"| U2
+
+    %% --- colour classes ---
+    classDef user     fill:#4361ee,stroke:#2a4acc,color:#fff
+    classDef master   fill:#3a0ca3,stroke:#2d0b82,color:#fff
+    classDef plan     fill:#4cc9f0,stroke:#2bb8e0,color:#000
+    classDef lcp      fill:#f4a261,stroke:#e08c4a,color:#000
+    classDef tools    fill:#2a9d8f,stroke:#1f7a6e,color:#fff
+    classDef kg       fill:#e9c46a,stroke:#d4a843,color:#000
+    classDef merge    fill:#3a0ca3,stroke:#2d0b82,color:#fff
+    classDef response fill:#52b788,stroke:#3d9a6d,color:#fff
+    classDef answer   fill:#1b4332,stroke:#143326,color:#fff
+    classDef xwalk    fill:#adb5bd,stroke:#8d959d,color:#000
+
+    class U,U2 user
+    class M master
+    class PLAN plan
+    class L,C,P lcp
+    class T_ONET,T_ESCO,T_SFIA,T_MORE tools
+    class KG1,KG2,KG3,KG4 kg
+    class MERGE merge
+    class R response
+    class A answer
+    class XW xwalk
