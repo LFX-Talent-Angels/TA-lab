@@ -114,7 +114,9 @@ class OnetLoader:
         UNWIND $rows AS row
         MERGE (o:Occupation {onet_soc_code: row.onet_soc_code})
         SET o.title = row.title,
-            o.description = row.description
+            o.description = row.description,
+            o.source = "onet",
+            o.source_id = row.onet_soc_code
         """
         self._run_batches(query, rows)
         return len(rows)
@@ -136,7 +138,9 @@ class OnetLoader:
         MERGE (t:Task {task_id: row.task_id})
         SET t.text = row.text,
             t.task_type = row.task_type,
-            t.domain_source = row.domain_source
+            t.domain_source = row.domain_source,
+            t.source = "onet",
+            t.source_id = toString(row.task_id)
         WITH t, row
         MATCH (o:Occupation {onet_soc_code: row.onet_soc_code})
         MERGE (o)-[:HAS_TASK]->(t)
@@ -197,7 +201,9 @@ class OnetLoader:
         UNWIND $rows AS row
         MERGE (s:Skill {element_id: row.element_id})
         SET s.name = row.name,
-            s.description = row.description
+            s.description = row.description,
+            s.source = "onet",
+            s.source_id = row.element_id
         WITH s, row
         MATCH (o:Occupation {onet_soc_code: row.onet_soc_code})
         MERGE (o)-[rel:REQUIRES_SKILL {skill_type: row.skill_type}]->(s)
@@ -227,7 +233,9 @@ class OnetLoader:
         UNWIND $rows AS row
         MERGE (sw:Software {name: row.name})
         SET sw.category_id = row.category_id,
-            sw.category = row.category
+            sw.category = row.category,
+            sw.source = "onet",
+            sw.source_id = row.name
         WITH sw, row
         MATCH (o:Occupation {onet_soc_code: row.onet_soc_code})
         MERGE (o)-[rel:USES_SOFTWARE]->(sw)
