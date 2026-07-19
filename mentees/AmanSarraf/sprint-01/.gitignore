@@ -1,0 +1,10 @@
+# O*NET downloads — link to source in NOTES.md, do not commit
+data/
+*.zip
+
+# Local secrets & tooling
+.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
