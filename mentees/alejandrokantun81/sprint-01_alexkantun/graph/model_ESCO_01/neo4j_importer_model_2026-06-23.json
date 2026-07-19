@@ -1,0 +1,2472 @@
+{
+  "version": "3.0.0",
+  "visualisation": {
+    "nodes": [
+      {
+        "id": "n:1",
+        "position": {
+          "x": -101.54314507378473,
+          "y": 11.467872902199073
+        }
+      },
+      {
+        "id": "n:2",
+        "position": {
+          "x": -103.9504790726442,
+          "y": -71.20527336123156
+        }
+      },
+      {
+        "id": "n:3",
+        "position": {
+          "x": 122.82333059492959,
+          "y": 13.031396328723417
+        }
+      },
+      {
+        "id": "n:4",
+        "position": {
+          "x": 16.04725289050448,
+          "y": 123.47390874674035
+        }
+      }
+    ]
+  },
+  "dataModel": {
+    "version": "3.0.0",
+    "graphSchemaRepresentation": {
+      "version": "1.0.0",
+      "graphSchema": {
+        "nodeLabels": [
+          {
+            "$id": "nl:1",
+            "token": "Occupation ",
+            "properties": [
+              {
+                "$id": "p:1",
+                "token": "uri",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:2",
+                "token": "prefLabel_en",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:3",
+                "token": "iscoGroup",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:4",
+                "token": "description",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:5",
+                "token": "code",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:6",
+                "token": "naceCode",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:7",
+                "token": "modifiedDate",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:8",
+                "token": "altLabel_en",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:9",
+                "token": "regulatedProfessionNote",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:10",
+                "token": "scopeNote",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:11",
+                "token": "definition",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:12",
+                "token": "hiddenLabels",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:13",
+                "token": "inScheme",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:2",
+            "token": "ISCOGroup",
+            "properties": [
+              {
+                "$id": "p:14",
+                "token": "uri",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:15",
+                "token": "prefLabel_en",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:16",
+                "token": "code",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:17",
+                "token": "description",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:18",
+                "token": "altLabel_en",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:19",
+                "token": "status",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:20",
+                "token": "inScheme",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:3",
+            "token": "Skill",
+            "properties": [
+              {
+                "$id": "p:21",
+                "token": "uri",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:22",
+                "token": "prefLabel_en2",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:23",
+                "token": "skillType",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:24",
+                "token": "reuseLevel",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:25",
+                "token": "description",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:26",
+                "token": "altLabel_en",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:27",
+                "token": "modifiedDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:28",
+                "token": "status",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:29",
+                "token": "scopeNote",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:30",
+                "token": "definition",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:31",
+                "token": "hiddenLabels",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:32",
+                "token": "inScheme",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:4",
+            "token": "SkillGroup",
+            "properties": [
+              {
+                "$id": "p:33",
+                "token": "uri",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:34",
+                "token": "prefLabel_en",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:35",
+                "token": "description",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:36",
+                "token": "scopeNote",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:37",
+                "token": "altLabel_en",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:38",
+                "token": "modifiedDate",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:39",
+                "token": "status",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:40",
+                "token": "hiddenLabels",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:41",
+                "token": "inScheme",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          }
+        ],
+        "relationshipTypes": [
+          {
+            "$id": "rt:1",
+            "token": "CLASSIFIED_UNDER",
+            "properties": []
+          },
+          {
+            "$id": "rt:2",
+            "token": "IS_BROADER_THAN",
+            "properties": []
+          },
+          {
+            "$id": "rt:3",
+            "token": "REQUIRES_ESSENTIAL_SKILL",
+            "properties": []
+          },
+          {
+            "$id": "rt:4",
+            "token": "MAY_REQUIRE_OPTIONAL_SKILL",
+            "properties": []
+          },
+          {
+            "$id": "rt:5",
+            "token": "MAY_REQUIRE_OPTIONAL_SKILL",
+            "properties": []
+          },
+          {
+            "$id": "rt:6",
+            "token": "IS_BROADER_THAN",
+            "properties": []
+          },
+          {
+            "$id": "rt:7",
+            "token": "PART_OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:8",
+            "token": "IS_BROADER_THAN",
+            "properties": []
+          },
+          {
+            "$id": "rt:9",
+            "token": "REQUIRES_ESSENTIAL_SKILL",
+            "properties": []
+          },
+          {
+            "$id": "rt:10",
+            "token": "IS_BROADER_THAN",
+            "properties": []
+          }
+        ],
+        "nodeObjectTypes": [
+          {
+            "$id": "n:1",
+            "labels": [
+              {
+                "$ref": "#nl:1"
+              }
+            ]
+          },
+          {
+            "$id": "n:2",
+            "labels": [
+              {
+                "$ref": "#nl:2"
+              }
+            ]
+          },
+          {
+            "$id": "n:3",
+            "labels": [
+              {
+                "$ref": "#nl:3"
+              }
+            ]
+          },
+          {
+            "$id": "n:4",
+            "labels": [
+              {
+                "$ref": "#nl:4"
+              }
+            ]
+          }
+        ],
+        "relationshipObjectTypes": [
+          {
+            "$id": "r:1",
+            "type": {
+              "$ref": "#rt:1"
+            },
+            "from": {
+              "$ref": "#n:1"
+            },
+            "to": {
+              "$ref": "#n:2"
+            }
+          },
+          {
+            "$id": "r:2",
+            "type": {
+              "$ref": "#rt:2"
+            },
+            "from": {
+              "$ref": "#n:2"
+            },
+            "to": {
+              "$ref": "#n:2"
+            }
+          },
+          {
+            "$id": "r:3",
+            "type": {
+              "$ref": "#rt:3"
+            },
+            "from": {
+              "$ref": "#n:1"
+            },
+            "to": {
+              "$ref": "#n:3"
+            }
+          },
+          {
+            "$id": "r:4",
+            "type": {
+              "$ref": "#rt:4"
+            },
+            "from": {
+              "$ref": "#n:3"
+            },
+            "to": {
+              "$ref": "#n:3"
+            }
+          },
+          {
+            "$id": "r:5",
+            "type": {
+              "$ref": "#rt:5"
+            },
+            "from": {
+              "$ref": "#n:1"
+            },
+            "to": {
+              "$ref": "#n:3"
+            }
+          },
+          {
+            "$id": "r:6",
+            "type": {
+              "$ref": "#rt:6"
+            },
+            "from": {
+              "$ref": "#n:1"
+            },
+            "to": {
+              "$ref": "#n:1"
+            }
+          },
+          {
+            "$id": "r:7",
+            "type": {
+              "$ref": "#rt:7"
+            },
+            "from": {
+              "$ref": "#n:3"
+            },
+            "to": {
+              "$ref": "#n:4"
+            }
+          },
+          {
+            "$id": "r:8",
+            "type": {
+              "$ref": "#rt:8"
+            },
+            "from": {
+              "$ref": "#n:4"
+            },
+            "to": {
+              "$ref": "#n:4"
+            }
+          },
+          {
+            "$id": "r:9",
+            "type": {
+              "$ref": "#rt:9"
+            },
+            "from": {
+              "$ref": "#n:3"
+            },
+            "to": {
+              "$ref": "#n:3"
+            }
+          },
+          {
+            "$id": "r:10",
+            "type": {
+              "$ref": "#rt:10"
+            },
+            "from": {
+              "$ref": "#n:3"
+            },
+            "to": {
+              "$ref": "#n:3"
+            }
+          }
+        ],
+        "constraints": [
+          {
+            "$id": "c:1",
+            "name": "uri_Occupation__key",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:1"
+            },
+            "properties": [
+              {
+                "$ref": "#p:1"
+              }
+            ]
+          },
+          {
+            "$id": "c:2",
+            "name": "uri_ISCOGroup_key",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:2"
+            },
+            "properties": [
+              {
+                "$ref": "#p:14"
+              }
+            ]
+          },
+          {
+            "$id": "c:4",
+            "name": "uri_SkillGroup_key",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:4"
+            },
+            "properties": [
+              {
+                "$ref": "#p:33"
+              }
+            ]
+          },
+          {
+            "$id": "c:3",
+            "name": "uri_Skill_key",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:3"
+            },
+            "properties": [
+              {
+                "$ref": "#p:21"
+              }
+            ]
+          }
+        ],
+        "indexes": []
+      }
+    },
+    "graphSchemaExtensionsRepresentation": {
+      "nodeKeyProperties": [
+        {
+          "node": {
+            "$ref": "#n:1"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:1"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:2"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:14"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:3"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:21"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:4"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:33"
+            }
+          ]
+        }
+      ],
+      "relationshipKeyProperties": []
+    },
+    "graphMappingRepresentation": {
+      "dataSourceSchema": {
+        "type": "local",
+        "tableSchemas": [
+          {
+            "name": "broaderRelationsOccPillar_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "ISCOGroup",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/isco/C01",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptLabel",
+                "sample": "Commissioned armed forces officers",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderType",
+                "sample": "ISCOGroup",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderUri",
+                "sample": "http://data.europa.eu/esco/isco/C0",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderLabel",
+                "sample": "Armed forces occupations",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "broaderRelationsSkillPillar_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "SkillGroup",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/isced-f/00",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptLabel",
+                "sample": "generic programmes and qualifications",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderType",
+                "sample": "SkillGroup",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderUri",
+                "sample": "http://data.europa.eu/esco/skill/c46fcb45-5c14-4ffa-abed-5a43f104bb22",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderLabel",
+                "sample": "knowledge",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "dictionary_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "filename",
+                "sample": "occupations",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "data header",
+                "sample": "conceptType",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "property",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "No direct related property exists",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "digCompSkillsCollection_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "KnowledgeSkillCompetence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/skill/14832d87-2f2f-4895-b290-e4760ebae42a",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "solve technical problems",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "skillType",
+                "sample": "skill/competence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "reuseLevel",
+                "sample": "cross-sector",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "resolve technical issues | diagnose technical problems",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "Identify technical problems when operating devices and using digital environments, and solve them (f...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptUri",
+                "sample": "http://data.europa.eu/esco/skill/7e5147d1-60b1-4a68-804b-1f5cb0396b91 | http://data.europa.eu/esco/s...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptPT",
+                "sample": "problem-solving with digital tools | identify problems | resolving computer problems",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "greenShareOcc_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "ISCO level 3",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/isco/C011",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "code",
+                "sample": "011",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "Commissioned armed forces officers",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "greenShare",
+                "sample": "0.00575396825396825",
+                "recommendedType": {
+                  "type": "float"
+                }
+              }
+            ]
+          },
+          {
+            "name": "skillSkillRelations_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "originalSkillUri",
+                "sample": "http://data.europa.eu/esco/skill/00064735-8fad-454b-90c7-ed858cc993f2",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "originalSkillType",
+                "sample": "skill/competence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relationType",
+                "sample": "optional",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relatedSkillType",
+                "sample": "knowledge",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relatedSkillUri",
+                "sample": "http://data.europa.eu/esco/skill/d4a0744a-508b-4a5e-97a5-ad1fc7f55e6e",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "occupationSkillRelations_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "occupationUri",
+                "sample": "http://data.europa.eu/esco/occupation/00030d09-2b3a-4efd-87cc-c4ea39d27c34",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "occupationLabel",
+                "sample": "technical director",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "relationType",
+                "sample": "essential",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "skillType",
+                "sample": "knowledge",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "skillUri",
+                "sample": "http://data.europa.eu/esco/skill/fed5b267-73fa-461d-9f69-827c78beb39d",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "skillLabel",
+                "sample": "theatre techniques",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "researchSkillsCollection_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "KnowledgeSkillCompetence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/skill/00b9a3aa-7070-4bb5-8020-f228a97cf42f",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "draft scientific or academic papers and technical documentation",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "skillType",
+                "sample": "skill/competence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "reuseLevel",
+                "sample": "cross-sector",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "create technical documentation | create technical documentation and academic writings | write techni...",
+                "recommendedType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "name": "description",
+                "sample": "Draft and edit scientific, academic or technical texts on different subjects.",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptUri",
+                "sample": "http://data.europa.eu/esco/skill/6e62e776-fbfa-486c-a6df-58cd239c86fe",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptPT",
+                "sample": "technical or academic writing",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "languageSkillsCollection_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "KnowledgeSkillCompetence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/skill/01f10952-cb59-4347-9aee-d4fbc51c870a",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "skillType",
+                "sample": "skill/competence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "reuseLevel",
+                "sample": "transversal",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "write Hungarian",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "correspond in written Hungarian | show competency in written Hungarian",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "Compose written texts in Hungarian.",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptUri",
+                "sample": "http://data.europa.eu/esco/skill/ddd3596a-43f3-402e-960a-5f79362a8609",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptPT",
+                "sample": "Hungarian",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "skillsHierarchy_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "Level 0 URI",
+                "sample": "http://data.europa.eu/esco/skill/e35a5936-091d-4e87-bafe-f264e55bd656",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 0 preferred term",
+                "sample": "language skills and knowledge",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 1 URI",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 1 preferred term",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 2 URI",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 2 preferred term",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 3 URI",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 3 preferred term",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Description",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Scope note",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 0 code",
+                "sample": "L",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 1 code",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 2 code",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "Level 3 code",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "transversalSkillsCollection_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "KnowledgeSkillCompetence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/skill/001115fb-569f-4ee6-8381-c6807ef2527f",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "skillType",
+                "sample": "skill/competence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "reuseLevel",
+                "sample": "transversal",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "show initiative",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "initiate action | be a driving force | give impetus | take the initiative | show sense of initiative...",
+                "recommendedType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "name": "description",
+                "sample": "Be proactive and take the first step in an action without waiting for what others say or do.",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptUri",
+                "sample": "http://data.europa.eu/esco/skill/91860993-1a8b-4473-91f3-600aa1924bd0",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptPT",
+                "sample": "taking a proactive approach",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "digitalSkillsCollection_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "KnowledgeSkillCompetence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/skill/000f1d3d-220f-4789-9c0a-cc742521fb02",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "Haskell",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "skillType",
+                "sample": "knowledge",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "reuseLevel",
+                "sample": "sector-specific",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "Haskell techniques",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "The techniques and principles of software development, such as analysis, algorithms, coding, testing...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptUri",
+                "sample": "http://data.europa.eu/esco/skill/21d2f96d-35f7-4e3f-9745-c533d2dd6e97 | http://data.europa.eu/esco/i...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptPT",
+                "sample": "computer programming | software and applications development and analysis",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "skillGroups_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "SkillGroup",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/isced-f/00",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "generic programmes and qualifications",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "hiddenLabels",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modifiedDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "scopeNote",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "inScheme",
+                "sample": "http://data.europa.eu/esco/concept-scheme/skills\nhttp://data.europa.eu/esco/concept-scheme/skills-hi...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "Generic programmes and qualifications are those providing fundamental and personal skills education ...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "code",
+                "sample": "00",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              }
+            ]
+          },
+          {
+            "name": "skills_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "KnowledgeSkillCompetence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/skill/0005c151-5b5a-4a66-8aac-60e734beb1ab",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "skillType",
+                "sample": "skill/competence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "reuseLevel",
+                "sample": "sector-specific",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "manage musical staff",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "manage music staff\ncoordinate duties of musical staff\ndirect musical staff\nmanage staff of music",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "hiddenLabels",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modifiedDate",
+                "sample": "2023-11-30T15:53:37.136Z",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "scopeNote",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "definition",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "inScheme",
+                "sample": "http://data.europa.eu/esco/concept-scheme/skills,\nhttp://data.europa.eu/esco/concept-scheme/member-s...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "Assign and manage staff tasks in areas such as scoring, arranging, copying music and vocal coaching.",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "greenSkillsCollection_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "KnowledgeSkillCompetence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/skill/001d46db-035e-4b92-83a3-ed8771e0c123",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "train staff to reduce food waste",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "skillType",
+                "sample": "skill/competence",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "reuseLevel",
+                "sample": "sector-specific",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "teach students food waste reduction practices | educate staff on food waste reduction | educate work...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "Establish new trainings and staff development provisions to support staff knowledge in food waste pr...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptUri",
+                "sample": "http://data.europa.eu/esco/skill/6c4fa8c8-e9e1-49b5-897f-6b61fe649488",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptPT",
+                "sample": "training on operational procedures",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "occupations_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "Occupation",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/occupation/00030d09-2b3a-4efd-87cc-c4ea39d27c34",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "iscoGroup",
+                "sample": "2654",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "technical director",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "director of technical arts\ntechnical supervisor\nhead of technical\ntechnical and operations director\n...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "hiddenLabels",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "modifiedDate",
+                "sample": "2024-01-25T11:28:50.295Z",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "regulatedProfessionNote",
+                "sample": "http://data.europa.eu/esco/regulated-professions/unregulated",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "scopeNote",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "definition",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "inScheme",
+                "sample": "http://data.europa.eu/esco/concept-scheme/member-occupations,\nhttp://data.europa.eu/esco/concept-sch...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "Technical directors realise the artistic visions of the creators within technical constraints. They ...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "code",
+                "sample": "2654.1.7",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "naceCode",
+                "sample": "http://data.europa.eu/ux2/nace2.1/9031",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "researchOccupationsCollection_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "Occupation",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/occupation/01ffb917-98dc-48c1-91ad-93c4104e791d",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "biomedical engineer",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "biomedical technology engineering specialist | biomedical technology engineering consultant | BME co...",
+                "recommendedType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "name": "description",
+                "sample": "Biomedical engineers combine knowledge of engineering principles and biological findings for the dev...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptUri",
+                "sample": "http://data.europa.eu/esco/occupation/f9433fdb-dde1-46cf-9e91-b49d243946a7",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "broaderConceptPT",
+                "sample": "bioengineer",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "ISCOGroups_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "ISCOGroup",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptUri",
+                "sample": "http://data.europa.eu/esco/isco/C0",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "code",
+                "sample": "0",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "Armed forces occupations",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "altLabels",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "inScheme",
+                "sample": "http://data.europa.eu/esco/concept-scheme/occupations,\nhttp://data.europa.eu/esco/concept-scheme/isc...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "Armed forces occupations include all jobs held by members of the armed forces. Members of the armed ...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "conceptSchemes_en.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "conceptType",
+                "sample": "ConceptScheme",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "conceptSchemeUri",
+                "sample": "http://data.europa.eu/esco/concept-scheme/6c930acd-c104-4ece-acf7-f44fd7333036",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "preferredLabel",
+                "sample": "Digital",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "title",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "released",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "hasTopConcept",
+                "sample": "http://data.europa.eu/esco/skill/6c80d53c-d8c9-41fe-998f-091fca208834,\nhttp://data.europa.eu/esco/sk...",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "nodeMappings": [
+        {
+          "node": {
+            "$ref": "#n:1"
+          },
+          "tableName": "occupations_en.csv",
+          "propertyMappings": [
+            {
+              "property": {
+                "$ref": "#p:1"
+              },
+              "fieldName": "conceptUri"
+            },
+            {
+              "property": {
+                "$ref": "#p:2"
+              },
+              "fieldName": "preferredLabel"
+            },
+            {
+              "property": {
+                "$ref": "#p:3"
+              },
+              "fieldName": "iscoGroup"
+            },
+            {
+              "property": {
+                "$ref": "#p:4"
+              },
+              "fieldName": "description"
+            },
+            {
+              "property": {
+                "$ref": "#p:5"
+              },
+              "fieldName": "code"
+            },
+            {
+              "property": {
+                "$ref": "#p:6"
+              },
+              "fieldName": "naceCode"
+            },
+            {
+              "property": {
+                "$ref": "#p:7"
+              },
+              "fieldName": "modifiedDate"
+            },
+            {
+              "property": {
+                "$ref": "#p:8"
+              },
+              "fieldName": "altLabels"
+            },
+            {
+              "property": {
+                "$ref": "#p:9"
+              },
+              "fieldName": "regulatedProfessionNote"
+            },
+            {
+              "property": {
+                "$ref": "#p:10"
+              },
+              "fieldName": "scopeNote"
+            },
+            {
+              "property": {
+                "$ref": "#p:11"
+              },
+              "fieldName": "definition"
+            },
+            {
+              "property": {
+                "$ref": "#p:13"
+              },
+              "fieldName": "inScheme"
+            },
+            {
+              "property": {
+                "$ref": "#p:12"
+              },
+              "fieldName": "hiddenLabels"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:2"
+          },
+          "tableName": "ISCOGroups_en.csv",
+          "propertyMappings": [
+            {
+              "property": {
+                "$ref": "#p:14"
+              },
+              "fieldName": "conceptUri"
+            },
+            {
+              "property": {
+                "$ref": "#p:15"
+              },
+              "fieldName": "preferredLabel"
+            },
+            {
+              "property": {
+                "$ref": "#p:16"
+              },
+              "fieldName": "code"
+            },
+            {
+              "property": {
+                "$ref": "#p:17"
+              },
+              "fieldName": "description"
+            },
+            {
+              "property": {
+                "$ref": "#p:18"
+              },
+              "fieldName": "altLabels"
+            },
+            {
+              "property": {
+                "$ref": "#p:19"
+              },
+              "fieldName": "status"
+            },
+            {
+              "property": {
+                "$ref": "#p:20"
+              },
+              "fieldName": "inScheme"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:3"
+          },
+          "tableName": "skills_en.csv",
+          "propertyMappings": [
+            {
+              "property": {
+                "$ref": "#p:21"
+              },
+              "fieldName": "conceptUri"
+            },
+            {
+              "property": {
+                "$ref": "#p:22"
+              },
+              "fieldName": "preferredLabel"
+            },
+            {
+              "property": {
+                "$ref": "#p:23"
+              },
+              "fieldName": "skillType"
+            },
+            {
+              "property": {
+                "$ref": "#p:24"
+              },
+              "fieldName": "reuseLevel"
+            },
+            {
+              "property": {
+                "$ref": "#p:25"
+              },
+              "fieldName": "description"
+            },
+            {
+              "property": {
+                "$ref": "#p:26"
+              },
+              "fieldName": "altLabels"
+            },
+            {
+              "property": {
+                "$ref": "#p:27"
+              },
+              "fieldName": "modifiedDate"
+            },
+            {
+              "property": {
+                "$ref": "#p:28"
+              },
+              "fieldName": "status"
+            },
+            {
+              "property": {
+                "$ref": "#p:29"
+              },
+              "fieldName": "scopeNote"
+            },
+            {
+              "property": {
+                "$ref": "#p:30"
+              },
+              "fieldName": "definition"
+            },
+            {
+              "property": {
+                "$ref": "#p:31"
+              },
+              "fieldName": "hiddenLabels"
+            },
+            {
+              "property": {
+                "$ref": "#p:32"
+              },
+              "fieldName": "inScheme"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:4"
+          },
+          "tableName": "skillGroups_en.csv",
+          "propertyMappings": [
+            {
+              "property": {
+                "$ref": "#p:33"
+              },
+              "fieldName": "conceptUri"
+            },
+            {
+              "property": {
+                "$ref": "#p:34"
+              },
+              "fieldName": "preferredLabel"
+            },
+            {
+              "property": {
+                "$ref": "#p:35"
+              },
+              "fieldName": "description"
+            },
+            {
+              "property": {
+                "$ref": "#p:36"
+              },
+              "fieldName": "scopeNote"
+            },
+            {
+              "property": {
+                "$ref": "#p:37"
+              },
+              "fieldName": "altLabels"
+            },
+            {
+              "property": {
+                "$ref": "#p:38"
+              },
+              "fieldName": "modifiedDate"
+            },
+            {
+              "property": {
+                "$ref": "#p:39"
+              },
+              "fieldName": "status"
+            },
+            {
+              "property": {
+                "$ref": "#p:40"
+              },
+              "fieldName": "hiddenLabels"
+            },
+            {
+              "property": {
+                "$ref": "#p:41"
+              },
+              "fieldName": "inScheme"
+            }
+          ]
+        }
+      ],
+      "relationshipMappings": [
+        {
+          "relationship": {
+            "$ref": "#r:1"
+          },
+          "tableName": "broaderRelationsOccPillar_en.csv",
+          "propertyMappings": [],
+          "mappingFilter": {
+            "fieldName": "broaderType",
+            "exactMatch": "ISCOGroup"
+          },
+          "fromMappings": {
+            "#p:1": "conceptUri"
+          },
+          "toMappings": {
+            "#p:14": "broaderUri"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:6"
+          },
+          "tableName": "broaderRelationsOccPillar_en.csv",
+          "propertyMappings": [],
+          "mappingFilter": {
+            "fieldName": "conceptType",
+            "exactMatch": "Occupation"
+          },
+          "fromMappings": {
+            "#p:1": "conceptUri"
+          },
+          "toMappings": {
+            "#p:1": "broaderUri"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:3"
+          },
+          "tableName": "occupationSkillRelations_en.csv",
+          "propertyMappings": [],
+          "mappingFilter": {
+            "fieldName": "relationType",
+            "exactMatch": "essential"
+          },
+          "fromMappings": {
+            "#p:1": "occupationUri"
+          },
+          "toMappings": {
+            "#p:21": "skillUri"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:5"
+          },
+          "tableName": "occupationSkillRelations_en.csv",
+          "propertyMappings": [],
+          "mappingFilter": {
+            "fieldName": "relationType",
+            "exactMatch": "optional"
+          },
+          "fromMappings": {
+            "#p:1": "occupationUri"
+          },
+          "toMappings": {
+            "#p:21": "skillUri"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:7"
+          },
+          "tableName": "broaderRelationsSkillPillar_en.csv",
+          "propertyMappings": [],
+          "mappingFilter": {
+            "fieldName": "broaderType",
+            "exactMatch": "SkillGroup"
+          },
+          "fromMappings": {
+            "#p:21": "conceptUri"
+          },
+          "toMappings": {
+            "#p:33": "broaderUri"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:2"
+          },
+          "tableName": "broaderRelationsOccPillar_en.csv",
+          "propertyMappings": [],
+          "mappingFilter": {
+            "fieldName": "conceptType",
+            "exactMatch": "ISCOGroup"
+          },
+          "fromMappings": {
+            "#p:14": "conceptUri"
+          },
+          "toMappings": {
+            "#p:14": "broaderUri"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:4"
+          },
+          "tableName": "skillSkillRelations_en.csv",
+          "propertyMappings": [],
+          "mappingFilter": {
+            "fieldName": "relationType",
+            "exactMatch": "optional"
+          },
+          "fromMappings": {
+            "#p:21": "originalSkillUri"
+          },
+          "toMappings": {
+            "#p:21": "relatedSkillUri"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:9"
+          },
+          "tableName": "skillSkillRelations_en.csv",
+          "propertyMappings": [],
+          "mappingFilter": {
+            "fieldName": "relationType",
+            "exactMatch": "essential"
+          },
+          "fromMappings": {
+            "#p:21": "originalSkillUri"
+          },
+          "toMappings": {
+            "#p:21": "relatedSkillUri"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:8"
+          },
+          "tableName": "broaderRelationsSkillPillar_en.csv",
+          "propertyMappings": [],
+          "mappingFilter": {
+            "fieldName": "conceptType",
+            "exactMatch": "SkillGroup"
+          },
+          "fromMappings": {
+            "#p:33": "conceptUri"
+          },
+          "toMappings": {
+            "#p:33": "broaderUri"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:10"
+          },
+          "tableName": "broaderRelationsSkillPillar_en.csv",
+          "propertyMappings": [],
+          "mappingFilter": {
+            "fieldName": "conceptType",
+            "exactMatch": "KnowledgeSkillCompetence"
+          },
+          "fromMappings": {
+            "#p:21": "conceptUri"
+          },
+          "toMappings": {
+            "#p:21": "broaderUri"
+          }
+        }
+      ]
+    },
+    "configurations": {
+      "idsToIgnore": [],
+      "arrayDelimiter": "|",
+      "vectorDelimiter": "|"
+    }
+  }
+}
