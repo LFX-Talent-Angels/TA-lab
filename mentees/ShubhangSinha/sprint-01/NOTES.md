@@ -35,17 +35,27 @@ pure skills-and-levels framework. That shapes everything below.
   browsable and downloadable after free registration.
 - **Licensing:** <https://sfia-online.org/en/about-sfia/licensing-sfia>
 - **The key finding: SFIA is the one taxonomy in our set with restrictive
-  licensing.** ESCO, O\*NET, and BLS are open government/EU data, and
-  Lightcast has an open core — but SFIA is free **only for personal,
-  non-commercial use** (registration required), and any organizational use
-  requires a paid license.
-- What this means for the project: TA-agents is Apache-2.0, so we cannot ship
-  verbatim SFIA text (level descriptions, skill definitions) without clearing
-  licensing with the SFIA Foundation. This slice therefore models the
-  **structure** (codes, names, level numbers) with **short paraphrases** of
-  the level descriptions, written for learning purposes — not verbatim SFIA
-  text. Any TA-agents feature that depends on SFIA must either stay in the
-  personal-use lane, obtain a license, or degrade to structure-only.
+  licensing.** ESCO, O\*NET, and BLS are open government/EU data — but SFIA is
+  free for **personal career development and internal use only**. Verified
+  2026-07-19 on the licensing page: a fee-bearing licence is required for
+  *"redistributing SFIA material in electronic or printed form to any other
+  organisation"*, and *"copying of this material is prohibited unless
+  authorised in writing or under a valid SFIA licence."*
+
+> ⚠️ **This is a public repository under Apache-2.0.** Publishing SFIA's
+> descriptive text here is redistribution to everyone — and worse, Apache-2.0
+> would purport to grant readers commercial rights over it that we do not hold.
+> So this slice stores **only what is factual and unprotected**: skill codes,
+> skill names, level numbers, and structure. It deliberately carries **no SFIA
+> descriptive text at all**. Each node instead carries an `sfia_ref` citation
+> telling you what to look up at <https://sfia-online.org> and keep locally.
+
+**The rule this establishes for TA-agents.** For any license-gated source:
+**store the pointer, fetch the payload at runtime.** Identifiers and structure
+live in our graph; licensed prose stays at the source and is retrieved when a
+user with their own access needs it. This keeps the published artifact clean
+while still letting the agents reason over SFIA's structure — which is the part
+we actually need for Locator and Connector.
 
 ## Graph model
 
@@ -59,11 +69,11 @@ graph TD
 
 - Node labels: `Category`, `Subcategory`, `Skill`, `SkillLevel`,
   `CrosswalkCode`.
-- **`SkillLevel` is a first-class node, not a property.** The description of a
-  skill changes at every responsibility level — level 4 IRMG and level 7 IRMG
-  are genuinely different things — so each (skill, level) pair gets its own
-  node with `level` and `description`. This is SFIA's unique dimension, and
-  flattening it into a property would lose the ability to query levels as
+- **`SkillLevel` is a first-class node, not a property.** What a skill *means*
+  changes at every responsibility level — level 4 IRMG and level 7 IRMG are
+  genuinely different things — so each (skill, level) pair gets its own node
+  carrying `level` and an `sfia_ref` citation. This is SFIA's unique dimension,
+  and flattening it into a property would lose the ability to query levels as
   entry points ("show me everything defined at level 6").
 - Every node carries `source: "sfia"` and a `source_id`, the project-wide
   convention so nodes from different taxonomies can coexist without ID
