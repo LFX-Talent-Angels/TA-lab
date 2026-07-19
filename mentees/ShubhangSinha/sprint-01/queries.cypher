@@ -1,138 +1,62 @@
-// ============================================================
-// SFIA Knowledge Graph - Draft Dataset
-// Category: Strategy and architecture
-// Subcategory: Strategy and planning
+// Sprint 1 — SFIA slice: example questions
+// Framed as previews of the three core agents (Locator / Connector / Pathfinder).
 //
-// Sample Skills:
-//   - ITSP : Strategic planning
-//   - ISCO : Information systems coordination
-//   - IRMG : Information management
-// ============================================================
+// Important limitation: SFIA has NO occupations. Where the other taxonomies
+// bridge two occupations through shared skills, here the bridges are shared
+// responsibility levels and the category tree. Occupation-mediated journeys
+// only become possible once SFIA skills are mapped to an occupation-centric
+// taxonomy (see the crosswalk query at the bottom).
 
+// -- Locator: "Where does 'Strategic planning' live in SFIA?"
+MATCH (s:Skill {source: "sfia", code: "ITSP"})
+      <-[:HAS_SKILL]-(sub:Subcategory)<-[:HAS_SUBCATEGORY]-(cat:Category)
+OPTIONAL MATCH (s)-[:HAS_LEVEL]->(l:SkillLevel)
+RETURN s.code AS code, s.name AS skill,
+       sub.name AS subcategory, cat.name AS category,
+       collect(l.level) AS defined_levels;
 
-// ============================================================
-// Category and Subcategory
-// ============================================================
+// -- Connector (outgoing): "What does Information management look like at each
+//    responsibility level?" — the progression inside a single skill.
+MATCH (s:Skill {source: "sfia", code: "IRMG"})-[:HAS_LEVEL]->(l:SkillLevel)
+RETURN l.level AS level, l.description AS description
+ORDER BY l.level;
 
-MERGE (c:Category {
-    name: "Strategy and architecture"
-});
+// -- Connector (incoming): "Which skills are defined at responsibility level 6,
+//    and where do they sit?" — levels as entry points, which is exactly what
+//    modelling SkillLevel as first-class nodes buys us.
+MATCH (s:Skill)-[:HAS_LEVEL]->(l:SkillLevel {level: 6})
+MATCH (s)<-[:HAS_SKILL]-(sub:Subcategory)<-[:HAS_SUBCATEGORY]-(cat:Category)
+RETURN s.code AS code, s.name AS skill,
+       sub.name AS subcategory, cat.name AS category;
 
-MERGE (sc:Subcategory {
-    name: "Strategy and planning"
-});
+// -- Pathfinder (shared-level bridge): "What connects Information management to
+//    Programming?" — no occupations in SFIA, so shared responsibility levels
+//    are the bridge: the levels at which both skills are defined.
+MATCH (a:Skill {source: "sfia", code: "IRMG"})-[:HAS_LEVEL]->(la:SkillLevel)
+MATCH (b:Skill {source: "sfia", code: "PROG"})-[:HAS_LEVEL]->(lb:SkillLevel)
+WHERE la.level = lb.level
+RETURN la.level AS shared_level,
+       la.description AS irmg_at_level,
+       lb.description AS prog_at_level
+ORDER BY shared_level;
 
-MERGE (c)-[:HAS_SUBCATEGORY]->(sc);
+// -- Pathfinder (category-tree bridge): shortest route between two skills in
+//    different categories, walking up and down the hierarchy.
+MATCH p = shortestPath(
+  (a:Skill {source: "sfia", code: "ITSP"})-[:HAS_SKILL|HAS_SUBCATEGORY*..6]-(b:Skill {source: "sfia", code: "TEST"})
+)
+RETURN [n IN nodes(p) | coalesce(n.code, n.name)] AS route;
 
+// -- Gap analysis (Evaluator preview): "I hold Information management at
+//    level 4 — what is left to reach level 7?" — SFIA's natural gap is
+//    vertical (level progression), not a missing-skills list.
+MATCH (s:Skill {source: "sfia", code: "IRMG"})-[:HAS_LEVEL]->(l:SkillLevel)
+WHERE l.level > 4
+RETURN l.level AS level_to_reach, l.description AS what_it_takes
+ORDER BY l.level;
 
-// ============================================================
-// ITSP - Strategic Planning
-// ============================================================
-
-CREATE (itsp:Skill {
-    code: "ITSP",
-    name: "Strategic planning"
-});
-
-MERGE (sc)-[:HAS_SKILL]->(itsp);
-
-CREATE (itsp_l4:SkillLevel {
-    level: 4,
-    description: "Contributes to the collection and analysis of information to support strategy development."
-});
-
-CREATE (itsp_l5:SkillLevel {
-    level: 5,
-    description: "Collates information and creates reports and insights to support strategy management processes."
-});
-
-CREATE (itsp_l6:SkillLevel {
-    level: 6,
-    description: "Sets policies, standards and guidelines for how the organisation conducts strategy development and planning."
-});
-
-CREATE (itsp_l7:SkillLevel {
-    level: 7,
-    description: "Leads the definition, implementation and communication of the organisation's strategic management framework."
-});
-
-MERGE (itsp)-[:HAS_LEVEL]->(itsp_l4);
-MERGE (itsp)-[:HAS_LEVEL]->(itsp_l5);
-MERGE (itsp)-[:HAS_LEVEL]->(itsp_l6);
-MERGE (itsp)-[:HAS_LEVEL]->(itsp_l7);
-
-
-// ============================================================
-// ISCO - Information Systems Coordination
-// ============================================================
-
-CREATE (isco:Skill {
-    code: "ISCO",
-    name: "Information systems coordination"
-});
-
-MERGE (sc)-[:HAS_SKILL]->(isco);
-
-CREATE (isco_l6:SkillLevel {
-    level: 6,
-    description: "Maintains awareness of the global needs of the organisation and coordinates implementation of information systems and services."
-});
-
-CREATE (isco_l7:SkillLevel {
-    level: 7,
-    description: "Establishes the organisation's strategy for managing information and coordinates lifecycle management of information systems."
-});
-
-MERGE (isco)-[:HAS_LEVEL]->(isco_l6);
-MERGE (isco)-[:HAS_LEVEL]->(isco_l7);
-
-
-// ============================================================
-// IRMG - Information Management
-// ============================================================
-
-CREATE (irmg:Skill {
-    code: "IRMG",
-    name: "Information management"
-});
-
-MERGE (sc)-[:HAS_SKILL]->(irmg);
-
-CREATE (irmg_l3:SkillLevel {
-    level: 3,
-    description: "Supports teams and individuals to identify and organise information assets and repositories."
-});
-
-CREATE (irmg_l4:SkillLevel {
-    level: 4,
-    description: "Enables the organisation to organise, control and discover information assets."
-});
-
-CREATE (irmg_l5:SkillLevel {
-    level: 5,
-    description: "Ensures implementation of information and records management policies and standards."
-});
-
-CREATE (irmg_l6:SkillLevel {
-    level: 6,
-    description: "Leads and plans activities to communicate and implement information management strategies."
-});
-
-CREATE (irmg_l7:SkillLevel {
-    level: 7,
-    description: "Establishes and communicates the organisation's information management strategy."
-});
-
-MERGE (irmg)-[:HAS_LEVEL]->(irmg_l3);
-MERGE (irmg)-[:HAS_LEVEL]->(irmg_l4);
-MERGE (irmg)-[:HAS_LEVEL]->(irmg_l5);
-MERGE (irmg)-[:HAS_LEVEL]->(irmg_l6);
-MERGE (irmg)-[:HAS_LEVEL]->(irmg_l7);
-
-
-// ============================================================
-// Visualisation Query
-// ============================================================
-
-MATCH p = ()-[r]->()
-RETURN p;
+// -- Crosswalk: "Which ESCO skills do our SFIA skills hand-map to?" — the only
+//    door from occupation-less SFIA into the occupation-centric taxonomies.
+MATCH (s:Skill {source: "sfia"})-[r:CROSSWALKS_TO]->(x:CrosswalkCode)
+RETURN s.code AS sfia_code, s.name AS sfia_skill,
+       x.scheme AS scheme, x.code AS code, x.name AS mapped_skill, r.note AS note;
