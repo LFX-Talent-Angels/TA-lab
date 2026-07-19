@@ -7,14 +7,13 @@
 ## Which taxonomy
 
 **Lightcast** (formerly Emsi Burning Glass). Unlike ESCO/O\*NET/SFIA/BLS,
-Lightcast is a **commercial** labor-market data provider, but it publishes an
-**open, freely usable core**: the **Lightcast Open Skills** library. That open
-core is what this slice models, plus the occupation side (LOT) needed to
-connect skills to jobs.
+Lightcast is a **commercial** labor-market data provider. Its skills library is
+published openly *as a taxonomy you can read*, which is what this slice models,
+plus the occupation side (LOT) needed to connect skills to jobs.
 
 Lightcast is really **two taxonomies plus a normalization layer**:
 
-1. **Open Skills** — 33,000+ standardized skills, updated regularly from
+1. **Open Skills** — 34,000+ standardized skills, refreshed monthly from
    millions of job postings and profiles.
    - Hierarchy: `Category → Subcategory → Skill` (e.g.
      *Information Technology → Artificial Intelligence → Machine Learning*).
@@ -34,16 +33,38 @@ Lightcast is really **two taxonomies plus a normalization layer**:
 
 ## Where the data comes from (+ license)
 
-- **Open Skills page & downloads:** <https://lightcast.io/open-skills>
-- **API docs (Skills, Titles, Classification):**
-  <https://docs.lightcast.io/apis/skills> — free tier with registration.
-- **License:** Open Skills is free to use with attribution under the Lightcast
-  Open Skills license (registration required for API keys); the full LOT/LMI
-  datasets are commercial and delivered to clients via data shares
-  (Snowflake/Databricks/BigQuery). This slice only models structure, with a
-  small **hand-curated illustrative sample** — node IDs marked `demo:` are
-  placeholders, not real Lightcast IDs. Replace them with real IDs from the
-  Open Skills API before using this for anything beyond learning.
+- **Taxonomy browser (free, no account):** <https://lightcast.io/open-skills> —
+  the full skill list, categories, and descriptions are publicly viewable.
+- **Skills Extractor (free tool):** normalizes skills out of a document (CV, job
+  description) against the taxonomy — usable without an API contract.
+- **Changelog:** public; the taxonomy updates monthly.
+- **API docs:** <https://docs.lightcast.dev/apis/skills>
+
+> ⚠️ **Finding — the free API tier is gone.** Lightcast's own FAQ now states
+> that *"API access is now available on a contract basis"*, and the former
+> `docs.lightcast.io/lightcast-api/docs/free-api-access` page returns 404.
+> Verified 2026-07-19. Nonprofit / public-good organizations can request full
+> access free of charge on registration, which is the route that applies to us
+> as an LF Decentralized Trust project — but it is a **request, not a signup**.
+
+**What this means for the project.** Of our five reference taxonomies, Lightcast
+is now the most access-restricted for *programmatic* use: O\*NET (CC BY 4.0) and
+BLS (US public domain) are fully open, ESCO is free with attribution, SFIA is
+license-gated for organizations but published as readable documents — Lightcast
+is the only one where the machine-readable path requires a contract. Two
+consequences:
+
+1. Any TA-agents feature depending on Lightcast must **degrade gracefully** when
+   the connector is absent; it cannot sit on the critical path of a core agent.
+2. We should **apply for nonprofit access** under the LFDT umbrella. Until that
+   lands, Lightcast contributes *structure and concepts* to our model, not data.
+
+Note on definitions: skill descriptions sourced from Wikipedia are distributed
+under CC BY-SA — relevant if we ever ingest them.
+
+**This slice therefore models structure only**, with a small hand-curated
+illustrative sample. Node IDs marked `demo:` are placeholders, **not** real
+Lightcast IDs. Replace them with real IDs once API access is granted.
 
 ## Graph model
 
@@ -78,8 +99,13 @@ See [`graph.cypher`](graph.cypher) for the build script and
    title to its specialized occupation and career area.
 2. *Connector:* "What skills does a Machine Learning Engineer require, and
    which subcategory does each belong to?"
-3. *Pathfinder:* "What connects 'Data Analyst' to 'Machine Learning Engineer'?"
+3. *Connector (inverse):* "Which occupations ask for SQL?"
+4. *Pathfinder:* "What connects 'Data Analyst' to 'Machine Learning Engineer'?"
    — shared skills form the bridge (a mini learning journey).
+5. *Evaluator preview:* "What is a Data Analyst missing to become an MLE?" —
+   gap analysis ranked by skill significance.
+6. *Crosswalk:* "How does this occupation map to SOC?" — the bridge to BLS and,
+   through it, to O\*NET.
 
 ## What I learned / what's hard
 
@@ -95,6 +121,7 @@ See [`graph.cypher`](graph.cypher) for the build script and
   universal — it crosswalks to SOC and lets SOC/ISCO do the bridging. Our
   integrated graph should treat crosswalks as first-class edges, not as ETL
   merge logic.
-- **Licensing is the real constraint.** Open Skills is usable; full LOT/LMI is
-  paid. Any TA-agents feature that depends on Lightcast must degrade gracefully
-  to the open subset.
+- **Licensing is the real constraint, and it moved.** The free API tier existed
+  when this sprint was briefed and no longer does. Access terms are part of a
+  taxonomy's design surface, not a footnote — they belong in the integration
+  document and need a re-check date, not a one-time note.
