@@ -13,6 +13,11 @@
 // If your live database was loaded with the original script, check
 // whether your real :Occupation nodes actually carry a trailing-space
 // label — that would silently break any query assuming a clean label.
+//
+// STATUS UPDATE (homologation PR): both bugs — diagnosed above — are now
+// also fixed at the source, in ../model_ESCO_01/graph.cypher and in the
+// Data Importer JSON export. The diagnosis is kept here because the
+// failure mode (a silently broken label) is worth remembering.
 // =====================================================================
 
 
