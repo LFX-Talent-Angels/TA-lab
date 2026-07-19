@@ -3,6 +3,12 @@
 > Mentor entry (nosoypoot). Lightcast was the one reference taxonomy left
 > unassigned in Sprint 1 — this closes the set so all 5 taxonomies
 > (ESCO, O\*NET, SFIA, BLS, Lightcast) have a first KG exploration.
+>
+> **Outcome: Lightcast is not adoptable.** What began as a taxonomy slice ended
+> as the evidence for dropping it — see [Verdict](#verdict-lightcast-is-out).
+> The graph below is kept because the *model* still teaches something: the
+> job-title normalization layer is the best idea in the five taxonomies, and we
+> should replicate it from open sources.
 
 ## Which taxonomy
 
@@ -64,7 +70,70 @@ under CC BY-SA — relevant if we ever ingest them.
 
 **This slice therefore models structure only**, with a small hand-curated
 illustrative sample. Node IDs marked `demo:` are placeholders, **not** real
-Lightcast IDs. Replace them with real IDs once API access is granted.
+Lightcast IDs — which is also why this folder carries no licensing exposure.
+
+## Verdict: Lightcast is out
+
+Researched 2026-07-19. **Recommendation: do not adopt Lightcast as a data
+source.** Three independent reasons, any one of which would be sufficient.
+
+**1. Price.** Lightcast publishes no pricing, but signed public contracts
+bracket it:
+
+| Amount | What it covers | Buyer | Year |
+| --- | --- | --- | --- |
+| $124,000 / 3 yr (~$41k/yr) | Developer licence, 3 seats + bulk data download | US International Trade Commission | 2024–27 |
+| $50,000 / yr | Developer subscription, 12 users | CareerSource Florida | 2020–21 |
+| $105,000 / yr | Labor market data | NSF | 2024–25 |
+
+A published 2022 rate card shows their *Analyst/Community* GUI product at
+$5,000–$12,000/yr — do not confuse the two. Programmatic access, the only kind
+useful to us, runs 5–10× that. Out of reach for a volunteer mentorship project.
+
+**2. Licence — the harder blocker.** The [Open Terms of Use](https://lightcast.io/open-terms-of-use)
+permit redistribution and derivative works *"excluding commercial or for-profit
+purposes"*, and §2.3 adds that *"commercial, for-profit, **and/or artificial
+intelligence purposes** may be permitted provided the user contacts Lightcast
+and enters into an agreement."* Our project is AI agents over taxonomies — that
+clause names our exact use case. And our repos are Apache-2.0, which grants
+readers commercial rights we would not hold. The November 2023 terms allowed
+commercial use via a *"no-cost contract"*; the July 2025 revision dropped
+"no-cost". The direction of travel is clear.
+
+**3. Reliability.** The free API tier ended 2026-02-13 with three days' notice,
+explicitly hitting open-source projects that depended on it. §5 reserves the
+right to cancel access *"at any time, for any reason."* A core agent cannot sit
+on that foundation.
+
+*The nonprofit path is real but not a plan:* Lightcast offers free access to
+nonprofits supporting a public good, which LFDT plausibly qualifies for — but
+with no published criteria, no dedicated application, and no documented case of
+it being granted to an open-source project. Worth requesting; not worth
+planning around.
+
+## What replaces it
+
+Lightcast contributed three things the other taxonomies lack. Verified against
+primary sources:
+
+| Lightcast capability | Open substitute | Verdict |
+| --- | --- | --- |
+| Job-title normalization (~75k titles) | **O\*NET Job Titles** — 57,543 lay titles → O\*NET-SOC, CC BY 4.0; plus **ESCO altLabels** (28 languages, which Lightcast never had); plus **JobBERT-v3** (MIT) for semantic matching of titles never seen before | **Covered, arguably better** |
+| Skill significance weights | **O\*NET Essential + Transferable Skills** — 62,580 weighted edges on Importance *and* Level scales, each with sample size, standard error and 95% CI; ships as native RDF | **Covered, more rigorous** |
+| Monthly freshness from live postings | **Sweden JobTech** — ~6.9M job ads since 2006, **CC0**, live API, taxonomy already carrying `esco-occupation`/`esco-skill` concepts | **Covered at one country's scale**; no open global equivalent exists |
+
+Note for the Evaluator: **ESCO is structurally binary** — 126,051 skill edges
+across exactly two predicates (`hasEssentialSkill` / `hasOptionalSkill`), with
+no field to hold a number. Any weighting on ESCO will be *our* modelling
+decision and must be recorded as such, not presented as source data.
+
+**Which taxonomy takes the fifth slot is a project decision, not a sprint
+note** — see the data-sources ADR in `TA-workspace/docs/decisions/`. The two
+candidates are Sweden JobTech (open, live, CC0) and the UK **Standard Skills
+Classification** (OGL v3.0, published 2026-04-30), which ships crosswalks to
+ESCO, O\*NET and SFIA in one package — though its skill weights are
+LLM-generated with a documented reproducibility failure, so adopt its
+crosswalks and distrust its scores.
 
 ## Graph model
 
