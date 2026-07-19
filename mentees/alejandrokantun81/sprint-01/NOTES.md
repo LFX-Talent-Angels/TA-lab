@@ -1,15 +1,36 @@
 # Sprint 1 — Research & Build a Taxonomy Graph
 
-**Taxonomy chosen:** ESCO (European Skills, Competences, Qualifications and Occupations)
+> Homologation note (mentor follow-up): this folder was renamed
+> `sprint-01_alexkantun` → `sprint-01` to match the common
+> `mentees/<handle>/sprint-01/` layout, and the two importer bugs Alejandro
+> had already diagnosed himself (a trailing-space `Occupation ` label and a
+> `prefLabel_en2` property on `Skill`) are now **fixed in this homologation
+> PR** — in `graph/model_ESCO_01/graph.cypher` and the Data Importer JSON.
+> His original diagnosis is kept in
+> `graph/model_occupations_example/ESCO_KG_Sample_From_Your_Script.cypher`
+> because the failure mode is worth remembering. Top-level `graph.cypher`
+> and `queries.cypher` were added in the standard format; everything else
+> below is his original work.
 
-## Where the data came from
+## Which taxonomy
 
-- **Source:** ESCO Classification dataset, v1.2.1 (English) — https://esco.ec.europa.eu/en/use-esco/download
+**ESCO** (European Skills, Competences, Qualifications and Occupations),
+v1.2.1 (English).
+
+## Where the data comes from (+ license)
+
+- **Source:** ESCO Classification dataset, v1.2.1 (English) — <https://esco.ec.europa.eu/en/use-esco/download>
 - **Publisher:** European Commission, DG Employment, Social Affairs and Inclusion
-- **License:** Creative Commons Attribution 4.0 International (CC BY 4.0) — https://creativecommons.org/licenses/by/4.0/
-- **Format used:** CSV export (occupations, skills, ISCO groups, skill groups, and the occupation–skill / skill–skill relation files)
+- **License:** ESCO is **free to use with attribution** under the ESCO/EU use
+  conditions (see the [download page](https://esco.ec.europa.eu/en/use-esco/download));
+  the dataset is published under Creative Commons Attribution 4.0
+  International (CC BY 4.0) — https://creativecommons.org/licenses/by/4.0/
+- **Attribution:** This work includes information from the ESCO
+  classification, published by the European Commission. © European Union.
+- **Format used:** CSV export (occupations, skills, ISCO groups, skill groups,
+  and the occupation–skill / skill–skill relation files)
 
-## The graph model
+## Graph model
 
 ESCO is already SKOS/RDF (`skos:Concept`, `skos:broader`, plus essential/optional skill predicates), so the property-graph translation is fairly direct:
 
@@ -19,6 +40,7 @@ ESCO is already SKOS/RDF (`skos:Concept`, `skos:broader`, plus essential/optiona
 | `Skill` | `uri` | An ESCO skill/competence concept |
 | `ISCOGroup` | `code` (string, to keep leading zeros) | ISCO-08 classification group |
 | `SkillGroup` | `code` (string) | ESCO skill-hierarchy group |
+| `CrosswalkCode` | `scheme` + `code` | Shared bridge node (`scheme: "ISCO"`) toward O\*NET/BLS via ISCO↔SOC |
 
 | Relationship | Direction | Meaning |
 |---|---|---|
@@ -26,6 +48,7 @@ ESCO is already SKOS/RDF (`skos:Concept`, `skos:broader`, plus essential/optiona
 | `MAY_REQUIRE_OPTIONAL_SKILL` | `Occupation → Skill` | Skill is contextual/optional |
 | `CLASSIFIED_UNDER` | `Occupation → ISCOGroup` | ISCO-08 mapping |
 | `IS_BROADER_THAN` | `Group → Group` (Skill or ISCO) | Hierarchy edge |
+| `CROSSWALKS_TO` | `Occupation → CrosswalkCode` | Attachment to the shared ISCO code |
 
 ```mermaid
 graph LR
@@ -35,12 +58,65 @@ graph LR
   A[Occupation: Data analyst] -->|CLASSIFIED_UNDER| G2[ISCOGroup 2519]
   S1 -->|PART_OF| SG[SkillGroup: ICT skills]
   S2 -->|PART_OF| SG
+  D -->|CROSSWALKS_TO| X[CrosswalkCode ISCO 2512]
 ```
 
-`graph.cypher` in this folder is a small, runnable slice that builds exactly this shape with a handful of real ESCO concepts — see that file for the nodes/edges and the example questions below.
+Conventions (workspace-wide, for the future integrated graph):
 
+- Every node carries `source: "esco"` and a `source_id` (the ESCO concept
+  URI, or the deterministic `http://data.europa.eu/esco/isco/C<code>` URI for
+  ISCO groups) — so nodes from different taxonomies can coexist without ID
+  collisions.
+- `code` fields are typed as **strings** to preserve ISCO-08 leading zeros.
+- `CROSSWALKS_TO` edges point at shared `CrosswalkCode {scheme: "ISCO"}`
+  nodes — ESCO's natural bridge, since ISCO↔SOC crosswalks connect the same
+  codes to O\*NET and BLS.
 
-## What I learned
+[`graph.cypher`](graph.cypher) in this folder is a small, runnable slice that
+builds exactly this shape; [`queries.cypher`](queries.cypher) holds the
+example questions below. The real importer script and Data Importer model for
+the **full** AuraDB build live under [`graph/`](graph/), documented in
+[`README.md`](README.md).
+
+## Example questions the graph answers
+
+Each is a preview of one of the core TA agents; full Cypher in
+[`queries.cypher`](queries.cypher).
+
+1. **Locator** — *"I do frontend stuff — where am I in ESCO?"* Resolve messy
+   input against `prefLabel`/`altLabels` and anchor the hit in the ISCO-08
+   hierarchy.
+
+2. **Connector** — *"What skills does occupation X require?"* (outgoing
+   adjacency, split by ESCO's essential/optional distinction)
+   ```cypher
+   MATCH (o:Occupation {prefLabel_en: "data scientist"})-[r:REQUIRES_ESSENTIAL_SKILL|MAY_REQUIRE_OPTIONAL_SKILL]->(s:Skill)
+   RETURN s.prefLabel_en, type(r) AS relationship;
+   ```
+
+3. **Connector (inverse)** — *"Which occupations share a given skill?"*
+   ```cypher
+   MATCH (s:Skill {prefLabel_en: "Python (computer programming)"})<-[:REQUIRES_ESSENTIAL_SKILL|MAY_REQUIRE_OPTIONAL_SKILL]-(o:Occupation)
+   RETURN o.prefLabel_en;
+   ```
+
+4. **Pathfinder** — *"What connects 'web developer' to 'data scientist'?"*
+   Shared skills form the bridge of a possible learning journey; the
+   multi-hop variant uses `allShortestPaths` through skill-to-skill edges.
+
+5. **Gap analysis (Evaluator preview)** — *"What must a web developer still
+   learn to qualify as a data scientist?"* Only **essential** skills count as
+   blockers — this is where ESCO's essential/optional distinction earns its
+   keep as a poor man's edge weight.
+
+6. **Crosswalk** — *"How is an occupation classified in ISCO-08, and which
+   shared code bridges it toward O\*NET/BLS?"*
+   ```cypher
+   MATCH (o:Occupation)-[:CROSSWALKS_TO]->(x:CrosswalkCode {scheme: "ISCO"})
+   RETURN o.prefLabel_en, x.code, x.name;
+   ```
+
+## What I learned & what's hard
 
 **Theory**
 
@@ -55,25 +131,15 @@ graph LR
 - ESCO's `skillSkillRelations` file reuses essential/optional semantics (not a symmetric "related to") — so the same two relationship types cover both occupation→skill and skill→skill edges; no extra relationship type was needed.
 - `definition` is almost entirely empty on ESCO concepts — `description` is the populated, human-readable field to use instead.
 
-## Example questions this graph can answer
+**What's hard**
 
-1. **What skills does occupation X require?**
-   ```cypher
-   MATCH (o:Occupation {prefLabel: "Software developer"})-[r:REQUIRES_ESSENTIAL_SKILL|MAY_REQUIRE_OPTIONAL_SKILL]->(s:Skill)
-   RETURN s.prefLabel, type(r) AS relationship;
-   ```
-
-2. **Which occupations share a given skill?**
-   ```cypher
-   MATCH (s:Skill {prefLabel: "web services"})<-[:REQUIRES_ESSENTIAL_SKILL|MAY_REQUIRE_OPTIONAL_SKILL]-(o:Occupation)
-   RETURN o.prefLabel;
-   ```
-
-3. **How is an occupation classified in ISCO-08?**
-   ```cypher
-   MATCH (o:Occupation {prefLabel: "Data analyst"})-[:CLASSIFIED_UNDER]->(g:ISCOGroup)
-   RETURN g.code, g.prefLabel;
-   ```
+- Two importer bugs slipped through the Data Importer export — a
+  trailing-space `Occupation ` label and a `prefLabel_en2` property on
+  `Skill` — both silent: nothing errors, queries just quietly match nothing.
+  Diagnosed during the sprint; **fixed in the homologation PR**.
+- Node-count discrepancies vs. the published ESCO totals and a null
+  `SkillGroup.code` mapping remain open — see the retrospective in
+  [`README.md`](README.md).
 
 ## Reflection — what would the TA-agents need from this graph?
 

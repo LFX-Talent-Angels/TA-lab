@@ -19,8 +19,8 @@
 //
 // Create key and uniqueness constraints for node labels and relationship types. This ensures ID property uniqueness and prevents duplicate entries from being introduced.
 //
-CREATE CONSTRAINT `uri_Occupation__key` IF NOT EXISTS
-FOR (n: `Occupation `)
+CREATE CONSTRAINT `uri_Occupation_key` IF NOT EXISTS
+FOR (n: `Occupation`)
 REQUIRE (n.`uri`) IS NODE KEY;
 CREATE CONSTRAINT `uri_ISCOGroup_key` IF NOT EXISTS
 FOR (n: `ISCOGroup`)
@@ -47,7 +47,7 @@ LOAD CSV WITH HEADERS FROM ($file_path_root + $file_0) AS row
 WITH row
 WHERE NOT row.`conceptUri` IN $idsToSkip AND NOT row.`conceptUri` IS NULL
 CALL (row) {
-  MERGE (n: `Occupation ` { `uri`: row.`conceptUri` })
+  MERGE (n: `Occupation` { `uri`: row.`conceptUri` })
   SET n.`uri` = row.`conceptUri`
   SET n.`prefLabel_en` = row.`preferredLabel`
   SET n.`iscoGroup` = row.`iscoGroup`
@@ -83,7 +83,7 @@ WHERE NOT row.`conceptUri` IN $idsToSkip AND NOT row.`conceptUri` IS NULL
 CALL (row) {
   MERGE (n: `Skill` { `uri`: row.`conceptUri` })
   SET n.`uri` = row.`conceptUri`
-  SET n.`prefLabel_en2` = row.`preferredLabel`
+  SET n.`prefLabel_en` = row.`preferredLabel`
   SET n.`skillType` = row.`skillType`
   SET n.`reuseLevel` = row.`reuseLevel`
   SET n.`description` = row.`description`
@@ -123,7 +123,7 @@ LOAD CSV WITH HEADERS FROM ($file_path_root + $file_4) AS row
 WITH row 
 WHERE row.`broaderType` = 'ISCOGroup'
 CALL (row) {
-  MATCH (source: `Occupation ` { `uri`: row.`conceptUri` })
+  MATCH (source: `Occupation` { `uri`: row.`conceptUri` })
   MATCH (target: `ISCOGroup` { `uri`: row.`broaderUri` })
   MERGE (source)-[r: `CLASSIFIED_UNDER`]->(target)
 } IN TRANSACTIONS OF 10000 ROWS;
@@ -141,7 +141,7 @@ LOAD CSV WITH HEADERS FROM ($file_path_root + $file_5) AS row
 WITH row 
 WHERE row.`relationType` = 'essential'
 CALL (row) {
-  MATCH (source: `Occupation ` { `uri`: row.`occupationUri` })
+  MATCH (source: `Occupation` { `uri`: row.`occupationUri` })
   MATCH (target: `Skill` { `uri`: row.`skillUri` })
   MERGE (source)-[r: `REQUIRES_ESSENTIAL_SKILL`]->(target)
 } IN TRANSACTIONS OF 10000 ROWS;
@@ -159,7 +159,7 @@ LOAD CSV WITH HEADERS FROM ($file_path_root + $file_5) AS row
 WITH row 
 WHERE row.`relationType` = 'optional'
 CALL (row) {
-  MATCH (source: `Occupation ` { `uri`: row.`occupationUri` })
+  MATCH (source: `Occupation` { `uri`: row.`occupationUri` })
   MATCH (target: `Skill` { `uri`: row.`skillUri` })
   MERGE (source)-[r: `MAY_REQUIRE_OPTIONAL_SKILL`]->(target)
 } IN TRANSACTIONS OF 10000 ROWS;
@@ -168,8 +168,8 @@ LOAD CSV WITH HEADERS FROM ($file_path_root + $file_4) AS row
 WITH row 
 WHERE row.`conceptType` = 'Occupation'
 CALL (row) {
-  MATCH (source: `Occupation ` { `uri`: row.`conceptUri` })
-  MATCH (target: `Occupation ` { `uri`: row.`broaderUri` })
+  MATCH (source: `Occupation` { `uri`: row.`conceptUri` })
+  MATCH (target: `Occupation` { `uri`: row.`broaderUri` })
   MERGE (source)-[r: `IS_BROADER_THAN`]->(target)
 } IN TRANSACTIONS OF 10000 ROWS;
 

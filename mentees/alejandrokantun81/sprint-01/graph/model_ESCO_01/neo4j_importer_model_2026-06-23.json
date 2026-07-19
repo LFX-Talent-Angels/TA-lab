@@ -40,7 +40,7 @@
         "nodeLabels": [
           {
             "$id": "nl:1",
-            "token": "Occupation ",
+            "token": "Occupation",
             "properties": [
               {
                 "$id": "p:1",
@@ -224,7 +224,7 @@
               },
               {
                 "$id": "p:22",
-                "token": "prefLabel_en2",
+                "token": "prefLabel_en",
                 "type": {
                   "type": "string"
                 },
