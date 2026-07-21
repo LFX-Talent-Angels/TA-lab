@@ -2,6 +2,14 @@
 
 > A Neo4j-powered knowledge graph built on the **U.S. Bureau of Labor Statistics (BLS) Employment Projections 2024–34** dataset (Table 1.2 from `Occupation.xlsx`), designed to power AI agents for lifelong learning and career navigation in the age of AI.
 
+> **Update (homologation follow-up):** the satellite-node model described in
+> [Graph Architecture](#graph-architecture) has since been refactored —
+> per-occupation scalars (wage, employment, projection) are now *properties*
+> on `Occupation`, and the SOC hierarchy documented below
+> (`MajorGroup → MinorGroup → BroadOccupation`) is now actually built by
+> `graph_builder.py`. See [`NOTES.md`](NOTES.md) for the current model; this
+> README remains the research deep-dive.
+
 ---
 
 ## Table of Contents
