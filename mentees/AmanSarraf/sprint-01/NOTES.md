@@ -6,9 +6,10 @@
 
 ---
 
-## Why O\*NET
+## Which taxonomy
 
-I chose **O\*NET** over ESCO, SFIA, BLS, and Lightcast for Sprint 1 because:
+**O\*NET 30.3** (USDOL/ETA). I chose O\*NET over ESCO, SFIA, BLS, and Lightcast
+for Sprint 1 because:
 
 - It is a **relational taxonomy that is naturally graph-shaped** — occupations
   link to skills, tasks, and tools through stable keys (`O*NET-SOC Code`, `Element ID`).
@@ -23,7 +24,7 @@ cluster** (4 related occupations) for a coherent slice.
 
 ---
 
-## Data source and license
+## Where the data comes from (+ license)
 
 | Item | Detail |
 |------|--------|
@@ -171,6 +172,25 @@ graph LR
 | `:Skill` | `element_id` | `2.B.3.e` (Programming) |
 | `:Software` | `name` | Python |
 
+**Node convention (project-wide):** every node also carries `source: "onet"`
+and a `source_id` (the O\*NET-SOC code, Element ID, task ID, or software name).
+This is the habit for the future integrated graph, so nodes from different
+taxonomies can coexist without ID collisions.
+
+### SOC crosswalk (bridge to BLS and ESCO)
+
+The **O\*NET-SOC code's first 7 characters ARE the SOC code**:
+`15-1252.00` → `15-1252`. That prefix is O\*NET's built-in bridge to **BLS**
+(which publishes wages and projections by SOC) and, via the SOC ↔ ISCO
+crosswalk, to **ESCO**. No lookup table needed — the mapping is derivable
+in Cypher with `left(o.onet_soc_code, 7)`.
+
+In [`graph.cypher`](graph.cypher) this is materialized as first-class edges:
+each `:Occupation` has a `CROSSWALKS_TO` edge to a
+`:CrosswalkCode {scheme: "SOC"}` node, so cross-taxonomy joins are graph
+traversals rather than ETL merge logic. See Q12 in
+[`queries.cypher`](queries.cypher).
+
 **Slice occupations:**
 
 | Code | Title |
@@ -189,7 +209,8 @@ graph LR
 | File | What it is |
 |------|------------|
 | `NOTES.md` | This document |
-| `load_onet.py` | Python loader → Neo4j |
+| `load_onet.py` | Python loader → Neo4j (the real path) |
+| `graph.cypher` | Standalone illustrative slice — quick look, no data download |
 | `queries.cypher` | Example Cypher queries |
 | `run_queries.py` | Verify queries against your Neo4j instance |
 | `docker-compose.yaml` | Optional local Neo4j (alternative to Aura) |
@@ -331,9 +352,25 @@ Full tutorial with all patterns: see earlier sections in this file or `load_onet
 
 ---
 
-## Example questions (verified)
+## Example questions the graph answers (verified)
 
 Run: `python run_queries.py` or paste from `queries.cypher` into Neo4j Browser.
+Each question previews one of the core agents:
+
+1. *Locator:* "Find the occupation called 'software developer'" — resolve a
+   human title to its `onet_soc_code` anchor (Q0, Q9).
+2. *Connector:* "What skills / tasks / software does Software Developers
+   require?" — everything directly linked to a located node (Q1, Q3, Q5).
+3. *Connector (inverse direction):* "Which occupations share Programming?
+   Which use Python?" — from a skill or tool back to occupations (Q2, Q4).
+4. *Pathfinder:* "What connects Computer Programmers to Software Developers?"
+   — shared-skill bridges between occupations, a mini learning journey
+   (Q8, Q10).
+5. *Gap analysis (Evaluator preview):* "What is Computer Programmers missing
+   to become a Software Developer?" — missing skills ranked by importance
+   (Q7, Q11).
+6. *Crosswalk:* "What is each occupation's SOC code?" — the bridge to BLS and
+   ESCO (Q12).
 
 ### Query by title (no SOC code memorization)
 
@@ -359,7 +396,7 @@ resolves messy input → `onet_soc_code` first.
 
 ---
 
-## What I learned
+## What I learned & what's hard
 
 ### Theory
 
